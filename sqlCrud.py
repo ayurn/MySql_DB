@@ -67,10 +67,24 @@ class Database:
             Log.logging.error(e)
         finally:    
             database.close()#Connection Close  
+            
+    def deleteRec():
+        '''
+        Description : Functuion to delete records in table.
+        '''
+        try:  
+            mycursor=database.cursor()
+            mycursor.execute("DELETE FROM student WHERE roll=3")#Execute SQL Query to update record
+            database.commit() # Commit is used for your changes in the database  
+            print('Record Deleted successfully...')   
+        except Exception as e:
+            Log.logging.error(e)
+        finally:    
+            database.close()#Connection Close  
                     
             
 if __name__ == '__main__':
-    print('Available Options: 1 : Create table, 2 : insert record, 3 : display records, 4 : update record ')
+    print('Available Options: 1 : Create table, 2 : insert record, 3 : display records, 4 : update record 5 : delete record')
     choice = input('Choose your option = ')
 
     if choice == '1':
@@ -85,6 +99,9 @@ if __name__ == '__main__':
     elif choice == '4':
         createObj=Database
         createObj.updateRec()
-
+    elif choice == '5':
+        createObj=Database
+        createObj.deleteRec()
+    
     else:
         print('Wrong choice, You are going exist.')
