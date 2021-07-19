@@ -50,12 +50,27 @@ class Database:
                 marks=i[2]  
                 print(roll,name,marks)  
         except:   
-            print('Error:Unable to fetch data.')
+            Log.logging.error('Error:Unable to fetch data.')
         finally:  
             database.close()#Connection Close  
-            
+    
+    def updateRec():
+        '''
+        Description : Functuion to update records in table.
+        '''
+        try:  
+            mycursor=database.cursor()
+            mycursor.execute("UPDATE student SET name='Ramu', marks=100 WHERE roll=1")#Execute SQL Query to update record
+            database.commit() # Commit is used for your changes in the database  
+            print('Record updated successfully...')   
+        except Exception as e:
+            Log.logging.error(e)
+        finally:    
+            database.close()#Connection Close  
+                    
             
 if __name__ == '__main__':
+    print('Available Options: 1 : Create table, 2 : insert record, 3 : display records, 4 : update record ')
     choice = input('Choose your option = ')
 
     if choice == '1':
@@ -67,6 +82,9 @@ if __name__ == '__main__':
     elif choice == '3':
         createObj=Database
         createObj.displayRec()
+    elif choice == '4':
+        createObj=Database
+        createObj.updateRec()
 
     else:
         print('Wrong choice, You are going exist.')
