@@ -35,6 +35,26 @@ class Database:
             database.rollback()
         finally:  
             database.close()#Connection Close  
+    
+    def displayRec():
+        '''
+        Description : Functuion to display records in table.
+        '''
+        try:  
+            mycursor=database.cursor()
+            mycursor.execute("select * from student")#Execute SQL Query to select all record   
+            result=mycursor.fetchall() #fetches all the rows in a result set   
+            for i in result:    
+                roll=i[0]  
+                name=i[1]  
+                marks=i[2]  
+                print(roll,name,marks)  
+        except:   
+            print('Error:Unable to fetch data.')
+        finally:  
+            database.close()#Connection Close  
+            
+            
 if __name__ == '__main__':
     choice = input('Choose your option = ')
 
@@ -44,6 +64,9 @@ if __name__ == '__main__':
     elif choice == '2':
         createObj=Database
         createObj.insertRecord()
+    elif choice == '3':
+        createObj=Database
+        createObj.displayRec()
 
     else:
         print('Wrong choice, You are going exist.')
