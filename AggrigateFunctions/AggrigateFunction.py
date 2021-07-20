@@ -73,11 +73,27 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
             
+    def max_funct(self):
+        """
+        Description:
+            This function will give the maximum value in particular column.
+        """
+        try:
+            cursor = database_con.cursor()
+            max_query = "select max(marks) as 'maximum marks' from student"
+            cursor.execute(max_query)
+            result = cursor.fetchall()
+            Log.logging.info(result)
+        except Exception as e:
+            Log.logging.error(e)
+
+            
 if __name__ == '__main__':
     aggregate = Database()
     aggregate.count_func()
     aggregate.sum_funct()
     aggregate.avg_funct()
     aggregate.min_funct()
+    aggregate.max_funct()
     
     
