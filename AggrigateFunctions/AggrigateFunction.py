@@ -100,6 +100,21 @@ class Database:
             Log.logging.info(result)
         except Exception as e:
             Log.logging.error(e)
+            
+    def get_last(self):
+        """
+        Description:
+            function will give the last value in particular column.
+        """
+        try:
+            cursor = database_con.cursor()
+            last_query = "select name from student order by name desc limit 1"
+            cursor.execute(last_query)
+            result = cursor.fetchall()
+            Log.logging.info(result)
+        except Exception as e:
+            Log.logging.error(e)
+
 
             
 if __name__ == '__main__':
@@ -110,5 +125,5 @@ if __name__ == '__main__':
     aggregate.min_funct()
     aggregate.max_funct()
     aggregate.get_first()
-    
+    aggregate.get_last()
     
