@@ -1,3 +1,11 @@
+'''
+@Author: Ayur Ninawe
+@Date: 2021-07-19 18:00:30
+@Last Modified by: Ayur Ninawe
+@Last Modified time: 2021-07-19 18:00:30
+@Title : Connecting database with python and performing CRUD operations on tables.
+'''
+
 import mysql.connector
 from mysql.connector import Error
 from decouple import config
