@@ -11,10 +11,10 @@ from mysql.connector import Error
 from decouple import config
 import Log 
 
-database = mysql.connector.connect(host= config('host'),
-                                        database=config('database'),
-                                        user=config('user'),
-                                        password=config('password'))
+database = mysql.connector.connect(host= config('HOST'),
+                                        database=config('DATABASE'),
+                                        user=config('USER'),
+                                        password=config('PASSWORD'))
 
 class Database:
 
