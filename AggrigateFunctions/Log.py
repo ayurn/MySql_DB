@@ -8,4 +8,6 @@ class Log:
     #Creating an object
     logger=logging.getLogger()
     
+    #Setting the threshold of logger to ERROR
+    logger.setLevel(logging.DEBUG)
     

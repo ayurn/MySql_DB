@@ -13,7 +13,7 @@ import Log
 
 database = mysql.connector.connect(host= config('HOST'),
                                         database=config('DATABASE'),
-                                        user=config('USER'),
+                                        user=config('DBUSER'),
                                         password=config('PASSWORD'))
 
 class Database:

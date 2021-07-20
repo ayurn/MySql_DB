@@ -12,7 +12,7 @@ import Log
 
 database_con = mysql.connector.connect(host= config('HOST'),
                                         database=config('DATABASE'),
-                                        user=config('USER'),
+                                        user=config('DBUSER'),
                                         password=config('PASSWORD'))
 
 class Database:
@@ -27,7 +27,7 @@ class Database:
             query ="select count(name) from student"
             cursor.execute(query)
             result = cursor.fetchall()
-            Log.logging.info(result)
+            Log.logging.debug(result)
         except Exception as e:
             Log.logging.error(e)
         finally:
@@ -36,3 +36,5 @@ class Database:
 if __name__ == '__main__':
     aggregate = Database()
     aggregate.count_func()
+    
+    
