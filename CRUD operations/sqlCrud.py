@@ -13,7 +13,11 @@ import Log
 
 database = mysql.connector.connect(host= config('HOST'),
                                         database=config('DATABASE'),
+<<<<<<< HEAD
                                         user=config('USER'),
+=======
+                                        user=config('DBUSER'),
+>>>>>>> AggrigateFunctions
                                         password=config('PASSWORD'))
 
 class Database:
