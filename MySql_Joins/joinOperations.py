@@ -32,6 +32,23 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
             
+    def left_join():
+        """
+        Description:
+            function retrieves data from the two tables and performs left join on them.
+        """
+        try:
+            cursor = database_con.cursor()
+            query ="SELECT * from EMPLOYEE LEFT JOIN CONTACT ON EMPLOYEE.CONTACT = CONTACT.ID;"
+            cursor.execute(query)
+            result = cursor.fetchall()
+            Log.logging.debug(result)
+        except Exception as e:
+            Log.logging.error(e)
+            
+    
+            
 if __name__ == '__main__':
     joins = Database
     joins.inner_join()
+    joins.left_join()
