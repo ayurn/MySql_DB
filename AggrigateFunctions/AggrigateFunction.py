@@ -76,12 +76,26 @@ class Database:
     def max_funct(self):
         """
         Description:
-            This function will give the maximum value in particular column.
+            function will give the maximum value in particular column.
         """
         try:
             cursor = database_con.cursor()
             max_query = "select max(marks) as 'maximum marks' from student"
             cursor.execute(max_query)
+            result = cursor.fetchall()
+            Log.logging.info(result)
+        except Exception as e:
+            Log.logging.error(e)
+            
+    def get_first(self):
+        """
+        Description:
+            function will give the first value in particular column.
+        """
+        try:
+            cursor = database_con.cursor()
+            first_query = "select marks from student limit 1"
+            cursor.execute(first_query)
             result = cursor.fetchall()
             Log.logging.info(result)
         except Exception as e:
@@ -95,5 +109,6 @@ if __name__ == '__main__':
     aggregate.avg_funct()
     aggregate.min_funct()
     aggregate.max_funct()
+    aggregate.get_first()
     
     
