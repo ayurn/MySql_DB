@@ -20,7 +20,7 @@ class Database:
     def count_func(self):
         """
         Description:
-            This function will count the entries based on query.
+            function will count the entries based on query.
         """
         try:
             cursor = database_con.cursor()
@@ -30,13 +30,11 @@ class Database:
             Log.logging.debug(result)
         except Exception as e:
             Log.logging.error(e)
-        finally:
-            database_con.close()
             
-    def sum_function(self):
+    def sum_funct(self):
         """
         Description:
-            This function will give the sum of entries in particular column.
+            function will give the sum of entries in particular column.
         """
         try:
             cursor = database_con.cursor()
@@ -46,12 +44,25 @@ class Database:
             Log.logging.info(result)
         except Exception as e:
             Log.logging.error(e)
-        finally:
-            database_con.close()
+            
+    def avg_funct(self):
+        """
+        Description:
+            function will give the average of entries in particular column.
+        """
+        try:
+            cursor = database_con.cursor()
+            avg_query = "select avg(marks) as 'average salary' from student"
+            cursor.execute(avg_query)
+            result = cursor.fetchall()
+            Log.logging.info(result)
+        except Exception as e:
+            Log.logging.error(e)
             
 if __name__ == '__main__':
     aggregate = Database()
     aggregate.count_func()
-    aggregate.sum_function()
+    aggregate.sum_funct()
+    aggregate.avg_funct()
     
     
