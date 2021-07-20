@@ -59,10 +59,25 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
             
+    def min_funct(self):
+        """
+        Description:
+            function will give the minimum value in particular column.
+        """
+        try:
+            cursor = database_con.cursor()
+            min_query = "select min(marks) as 'minimum marks' from student"
+            cursor.execute(min_query)
+            result = cursor.fetchall()
+            Log.logging.info(result)
+        except Exception as e:
+            Log.logging.error(e)
+            
 if __name__ == '__main__':
     aggregate = Database()
     aggregate.count_func()
     aggregate.sum_funct()
     aggregate.avg_funct()
+    aggregate.min_funct()
     
     
