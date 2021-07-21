@@ -83,6 +83,15 @@ class Database:
             Log.logging.info(result)
         except Exception as e:
             Log.logging.error(e)
+            
+    def drop_view():
+        try:
+            cursor = database_con.cursor()
+            dropView_query =("drop view emp_summary")
+            cursor.execute(dropView_query)
+            Log.logging.debug('View emp_summary dropped')
+        except Exception as e:
+            Log.logging.error(e)
     
 if __name__ == '__main__':
     viewObj = Database
@@ -92,5 +101,6 @@ if __name__ == '__main__':
     viewObj.displayView()
     viewObj.create_view_from_view()
     viewObj.displayNewView()
+    viewObj.drop_view()
     
     
