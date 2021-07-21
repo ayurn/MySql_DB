@@ -30,9 +30,22 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
             
-    
+    def displayView():
+        """
+        Description:
+            function will display mysql view from given columns from table.
+        """
+        try:
+            cursor = database_con.cursor()
+            displayView_query =("select * from employee_info")
+            cursor.execute(displayView_query)
+            result = cursor.fetchall()
+            Log.logging.info(result)
+        except Exception as e:
+            Log.logging.error(e)
             
 if __name__ == '__main__':
     viewObj = Database
     viewObj.createView()
+    viewObj.displayView()
     
