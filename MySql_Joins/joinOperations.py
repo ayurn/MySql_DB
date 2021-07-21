@@ -60,6 +60,20 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
             
+    def full_join():
+        """
+        Description:
+            function retrieves data from the two tables and performs full join on them using union.
+        """
+        try:
+            cursor = database_con.cursor()
+            query ="SELECT * from EMPLOYEE LEFT JOIN CONTACT ON EMPLOYEE.CONTACT = CONTACT.ID UNION SELECT * from EMPLOYEE RIGHT JOIN CONTACT ON EMPLOYEE.CONTACT = CONTACT.ID ;"
+            cursor.execute(query)
+            result = cursor.fetchall()
+            Log.logging.debug(result)
+        except Exception as e:
+            Log.logging.error(e)
+            
     
             
 if __name__ == '__main__':
@@ -67,3 +81,4 @@ if __name__ == '__main__':
     joins.inner_join()
     joins.left_join()
     joins.right_join()
+    joins.full_join()
