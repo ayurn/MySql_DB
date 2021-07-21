@@ -43,9 +43,24 @@ class Database:
             Log.logging.info(result)
         except Exception as e:
             Log.logging.error(e)
+            
+    def explain_index():
+        """
+        Description:
+        function explain index in table employee.
+        """
+        try:
+            cursor = database_con.cursor()
+            query ="EXPLAIN SELECT * FROM EMPLOYEE WHERE CONTACT_ID = 101;"
+            cursor.execute(query)
+            result = cursor.fetchall()
+            Log.logging.info(result)
+        except Exception as e:
+            Log.logging.error(e)
         
             
 if __name__ == '__main__':
     indexObj = Database
     indexObj.create_index()
     indexObj.display_index()
+    indexObj.explain_index()
