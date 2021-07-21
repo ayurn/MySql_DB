@@ -74,7 +74,20 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
             
-    
+    def cross_join():
+        """
+        Description:
+            function retrieves data from the two tables and performs cross join on them.
+        """
+        try:
+            cursor = database_con.cursor()
+            query ="SELECT * FROM EMPLOYEE CROSS JOIN CONTACT WHERE EMPLOYEE.CONTACT = CONTACT.ID;"
+            cursor.execute(query)
+            result = cursor.fetchall()
+            Log.logging.debug(result)
+        except Exception as e:
+            Log.logging.error(e)
+
             
 if __name__ == '__main__':
     joins = Database
@@ -82,3 +95,4 @@ if __name__ == '__main__':
     joins.left_join()
     joins.right_join()
     joins.full_join()
+    joins.cross_join()
