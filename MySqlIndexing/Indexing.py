@@ -84,6 +84,18 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
             
+    def drop_index():
+        """
+        Description:
+        function to drop index in table employee.
+        """
+        try:
+            cursor = database_con.cursor()
+            query ="DROP INDEX EMP_ID ON EMPLOYEE"
+            cursor.execute(query)
+        except Exception as e:
+            Log.logging.error(e)
+            
 if __name__ == '__main__':
     indexObj = Database
     indexObj.create_index()
@@ -91,4 +103,6 @@ if __name__ == '__main__':
     indexObj.explain_index()
     indexObj.get_data_by_index()
     indexObj.update_using_index()
+    indexObj.get_data_by_index()
+    indexObj.drop_index()
     
