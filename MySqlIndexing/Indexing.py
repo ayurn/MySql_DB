@@ -72,9 +72,23 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
             
+    def update_using_index():
+        """
+        Description:
+        function to update data using index in table employee.
+        """
+        try:
+            cursor = database_con.cursor()
+            query ="UPDATE EMPLOYEE SET INCOME = 9000 WHERE CONTACT_ID = 103;"
+            cursor.execute(query)
+        except Exception as e:
+            Log.logging.error(e)
+            
 if __name__ == '__main__':
     indexObj = Database
     indexObj.create_index()
     indexObj.display_index()
     indexObj.explain_index()
     indexObj.get_data_by_index()
+    indexObj.update_using_index()
+    
