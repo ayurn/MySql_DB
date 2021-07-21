@@ -30,6 +30,22 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
             
+    def display_index():
+        """
+        Description:
+        function displays index in table employee.
+        """
+        try:
+            cursor = database_con.cursor()
+            query ="show indexes from EMPLOYEE;"
+            cursor.execute(query)
+            result = cursor.fetchall()
+            Log.logging.info(result)
+        except Exception as e:
+            Log.logging.error(e)
+        
+            
 if __name__ == '__main__':
     indexObj = Database
     indexObj.create_index()
+    indexObj.display_index()
