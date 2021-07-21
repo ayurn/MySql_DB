@@ -25,7 +25,7 @@ class Database:
         """
         try:
             cursor = database_con.cursor()
-            query ="SELECT * from EMPLOYEE INNER JOIN CONTACT ON EMPLOYEE.CONTACT = CONTACT.ID;"
+            query ="SELECT * from EMPLOYEE INNER JOIN CONTACT ON EMPLOYEE.CONTACT_ID = CONTACT.ID;"
             cursor.execute(query)
             result = cursor.fetchall()
             Log.logging.debug(result)
@@ -39,7 +39,7 @@ class Database:
         """
         try:
             cursor = database_con.cursor()
-            query ="SELECT * from EMPLOYEE LEFT JOIN CONTACT ON EMPLOYEE.CONTACT = CONTACT.ID;"
+            query ="SELECT * from EMPLOYEE LEFT JOIN CONTACT ON EMPLOYEE.CONTACT_ID = CONTACT.ID;"
             cursor.execute(query)
             result = cursor.fetchall()
             Log.logging.debug(result)
@@ -53,7 +53,7 @@ class Database:
         """
         try:
             cursor = database_con.cursor()
-            query ="SELECT * from EMPLOYEE RIGHT JOIN CONTACT ON EMPLOYEE.CONTACT = CONTACT.ID;"
+            query ="SELECT * from EMPLOYEE RIGHT JOIN CONTACT ON EMPLOYEE.CONTACT_ID = CONTACT.ID;"
             cursor.execute(query)
             result = cursor.fetchall()
             Log.logging.debug(result)
@@ -67,7 +67,7 @@ class Database:
         """
         try:
             cursor = database_con.cursor()
-            query ="SELECT * from EMPLOYEE LEFT JOIN CONTACT ON EMPLOYEE.CONTACT = CONTACT.ID UNION SELECT * from EMPLOYEE RIGHT JOIN CONTACT ON EMPLOYEE.CONTACT = CONTACT.ID ;"
+            query ="SELECT * from EMPLOYEE LEFT JOIN CONTACT ON EMPLOYEE.CONTACT_ID = CONTACT.ID UNION SELECT * from EMPLOYEE RIGHT JOIN CONTACT ON EMPLOYEE.CONTACT_ID = CONTACT.ID ;"
             cursor.execute(query)
             result = cursor.fetchall()
             Log.logging.debug(result)
@@ -81,7 +81,7 @@ class Database:
         """
         try:
             cursor = database_con.cursor()
-            query ="SELECT * FROM EMPLOYEE CROSS JOIN CONTACT WHERE EMPLOYEE.CONTACT = CONTACT.ID;"
+            query ="SELECT * FROM EMPLOYEE CROSS JOIN CONTACT WHERE EMPLOYEE.CONTACT_ID = CONTACT.ID;"
             cursor.execute(query)
             result = cursor.fetchall()
             Log.logging.debug(result)
