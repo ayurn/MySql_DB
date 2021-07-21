@@ -44,8 +44,24 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
             
+    def update_view():
+        """
+        Description:
+            This function will update view.
+        """
+        try:
+            cursor = database_con.cursor()
+            update_view_query = ("alter view employee_info as select AGE, FIRST_NAME, INCOME, CONTACT_ID from EMPLOYEE")
+            cursor.execute(update_view_query)
+            Log.logging.debug('View updated')
+        except Exception as e:
+            Log.logging.error(e)
+    
+    
 if __name__ == '__main__':
     viewObj = Database
     viewObj.createView()
+    viewObj.displayView()
+    viewObj.update_view()
     viewObj.displayView()
     
