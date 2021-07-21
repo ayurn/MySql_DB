@@ -114,6 +114,20 @@ class Database:
             Log.logging.info(result)
         except Exception as e:
             Log.logging.error(e)
+            
+    def group_by(self):
+        """
+        Description:
+            function will list the number of customers in each country.
+        """
+        try:
+            cursor = database_con.cursor()
+            last_query = "SELECT COUNT(CustomerID), Country FROM Customers GROUP BY Country;"
+            cursor.execute(last_query)
+            result = cursor.fetchall()
+            Log.logging.info(result)
+        except Exception as e:
+            Log.logging.error(e)
 
 
             
@@ -126,4 +140,5 @@ if __name__ == '__main__':
     aggregate.max_funct()
     aggregate.get_first()
     aggregate.get_last()
+    aggregate.group_by()
     
