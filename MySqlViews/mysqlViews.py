@@ -56,7 +56,33 @@ class Database:
             Log.logging.debug('View updated')
         except Exception as e:
             Log.logging.error(e)
-    
+            
+    def create_view_from_view():
+        """
+        Description:
+            This function will update view.
+        """
+        try:
+            cursor = database_con.cursor()
+            view_from_view = ("create view emp_summary as select AGE,FIRST_NAME from employee_info")
+            cursor.execute(view_from_view)
+            Log.logging.debug('View created from view')
+        except Exception as e:
+            Log.logging.error(e)
+        
+    def displayNewView():
+        """
+        Description:
+            function will display mysql view from given columns from table.
+        """
+        try:
+            cursor = database_con.cursor()
+            displayView_query =("select * from emp_summary")
+            cursor.execute(displayView_query)
+            result = cursor.fetchall()
+            Log.logging.info(result)
+        except Exception as e:
+            Log.logging.error(e)
     
 if __name__ == '__main__':
     viewObj = Database
@@ -64,4 +90,7 @@ if __name__ == '__main__':
     viewObj.displayView()
     viewObj.update_view()
     viewObj.displayView()
+    viewObj.create_view_from_view()
+    viewObj.displayNewView()
+    
     
