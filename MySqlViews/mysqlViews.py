@@ -2,7 +2,7 @@
 @Author: Ayur Ninawe
 @Date: 2021-07-21 10:00:30
 @Last Modified by: Ayur Ninawe
-@Last Modified time: 2021-07-21 10:00:30
+@Last Modified time: 2021-07-21 15:00:30
 @Title : Connecting database with python and performing view operations on tables.
 '''
 import mysql.connector
@@ -60,7 +60,7 @@ class Database:
     def create_view_from_view():
         """
         Description:
-            This function will update view.
+            This function will create new view from existing view.
         """
         try:
             cursor = database_con.cursor()
@@ -85,6 +85,10 @@ class Database:
             Log.logging.error(e)
             
     def drop_view():
+        """
+        Description:
+            function will drop view.
+        """
         try:
             cursor = database_con.cursor()
             dropView_query =("drop view emp_summary")
