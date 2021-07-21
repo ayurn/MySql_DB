@@ -128,6 +128,20 @@ class Database:
             Log.logging.info(result)
         except Exception as e:
             Log.logging.error(e)
+            
+    def having(self):
+        """
+        Description:
+            function lists the number of customers in each country, sorted high to low.
+        """
+        try:
+            cursor = database_con.cursor()
+            last_query = "SELECT COUNT(CustomerID), Country FROM Customers GROUP BY Country HAVING COUNT(CustomerID) > 1 ORDER BY COUNT(CustomerID) DESC;"
+            cursor.execute(last_query)
+            result = cursor.fetchall()
+            Log.logging.info(result)
+        except Exception as e:
+            Log.logging.error(e)
 
 
             
@@ -141,4 +155,5 @@ if __name__ == '__main__':
     aggregate.get_first()
     aggregate.get_last()
     aggregate.group_by()
+    aggregate.having()
     
