@@ -47,7 +47,7 @@ class Database:
     def explain_index():
         """
         Description:
-        function explain index in table employee.
+        function to explain index in table employee.
         """
         try:
             cursor = database_con.cursor()
@@ -58,9 +58,23 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
         
+    def get_data_by_index():
+        """
+        Description:
+        function to get data using index in table employee.
+        """
+        try:
+            cursor = database_con.cursor()
+            query ="SELECT * FROM EMPLOYEE WHERE CONTACT_ID = 103;"
+            cursor.execute(query)
+            result = cursor.fetchall()
+            Log.logging.info(result)
+        except Exception as e:
+            Log.logging.error(e)
             
 if __name__ == '__main__':
     indexObj = Database
     indexObj.create_index()
     indexObj.display_index()
     indexObj.explain_index()
+    indexObj.get_data_by_index()
