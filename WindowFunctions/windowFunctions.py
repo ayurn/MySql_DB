@@ -31,6 +31,22 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
             
+    def cume_dist_func():
+        """
+        Description:
+            function to use CUME_DIST function of window functions.
+        """
+        try:
+            cursor = database_con.cursor()
+            create_procedure_query ="SELECT name, score, ROW_NUMBER() OVER (ORDER BY score) row_num,CUME_DIST() OVER (ORDER BY score) cume_dist_val FROM scores;"
+            cursor.execute(create_procedure_query)
+            result = cursor.fetchall()
+            Log.logging.debug(result)
+        except Exception as e:
+            Log.logging.error(e)
+        
+            
 if __name__ == '__main__':
     windowObj = Database
     windowObj.using_over()
+    windowObj.cume_dist_func()
