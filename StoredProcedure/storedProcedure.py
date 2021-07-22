@@ -30,6 +30,20 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
             
+    def call_procedure():
+        """
+        Description:
+            function will call the sorted procedure.
+        """
+        try:
+            cursor = database_con.cursor()
+            cursor.callproc('emp_info')
+            for result in cursor.stored_results():
+                Log.logging.info(result.fetchall())
+        except Exception as e:
+            Log.logging.error(e)
+            
 if __name__ == '__main__':
     storedObj = Database
     storedObj.create_stored_procedure()
+    storedObj.call_procedure()
