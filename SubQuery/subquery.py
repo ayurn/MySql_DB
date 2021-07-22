@@ -30,7 +30,22 @@ class Database:
             Log.logging.debug(result)
         except Exception as e:
             Log.logging.error(e)
+    
+    def comparison_operator_subquery():
+        """
+        Description:
+            function that returns the employee detail whose income is more than 6000 using subquery..
+        """
+        try:
+            cursor = database_con.cursor()
+            query ="select * from EMPLOYEE where CONTACT_ID IN (select CONTACT_ID from EMPLOYEE where INCOME > 6000);"
+            cursor.execute(query)
+            result = cursor.fetchall()
+            Log.logging.debug(result)
+        except Exception as e:
+            Log.logging.error(e)
             
 if __name__ == '__main__':
     subqueryObj = Database
     subqueryObj.create_subquery()
+    subqueryObj.comparison_operator_subquery()
