@@ -114,6 +114,20 @@ class Database:
             Log.logging.debug(result)
         except Exception as e:
             Log.logging.error(e)
+            
+    def percent_rank_func():
+        """
+        Description:
+            Using percent_rank() function calculate percentile rank in ascending order by sale column.
+        """
+        try:
+            cursor = database_con.cursor()
+            query ="select fiscal_year, sales_employee, sale, percent_rank() over ( partition by fiscal_year order by sale ) AS 'percent_sale' FROM sales"
+            cursor.execute(query)
+            result = cursor.fetchall()
+            Log.logging.debug(result)
+        except Exception as e:
+            Log.logging.error(e)
         
 if __name__ == '__main__':
     windowObj = Database
@@ -124,3 +138,4 @@ if __name__ == '__main__':
     windowObj.last_value_func()
     windowObj.nth_value_func()
     windowObj.rank_func()
+    windowObj.percent_rank_func()
