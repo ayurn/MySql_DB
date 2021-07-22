@@ -59,10 +59,23 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
         
+    def first_value_func():
+        """
+        Description:
+            function to use FIRST_VALUE() over the partition
+        """
+        try:
+            cursor = database_con.cursor()
+            create_procedure_query ="SELECT employee_name, department, hours, FIRST_VALUE(employee_name) OVER (PARTITION BY department ORDER BY hours) least_over_time FROM overtime;"
+            cursor.execute(create_procedure_query)
+            result = cursor.fetchall()
+            Log.logging.debug(result)
+        except Exception as e:
+            Log.logging.error(e)
         
-            
 if __name__ == '__main__':
     windowObj = Database
     windowObj.using_over()
     windowObj.cume_dist_func()
     windowObj.dense_rank_func()
+    windowObj.first_value_func()
