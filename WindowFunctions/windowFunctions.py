@@ -72,6 +72,20 @@ class Database:
             Log.logging.debug(result)
         except Exception as e:
             Log.logging.error(e)
+            
+    def last_value_func():
+        """
+        Description:
+            function to use LAST_VALUE() over the partition
+        """
+        try:
+            cursor = database_con.cursor()
+            create_procedure_query ="SELECT employee_name, department, hours, LAST_VALUE(employee_name) OVER (PARTITION BY department ORDER BY hours RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) most_over_time FROM overtime;"
+            cursor.execute(create_procedure_query)
+            result = cursor.fetchall()
+            Log.logging.debug(result)
+        except Exception as e:
+            Log.logging.error(e)
         
 if __name__ == '__main__':
     windowObj = Database
@@ -79,3 +93,4 @@ if __name__ == '__main__':
     windowObj.cume_dist_func()
     windowObj.dense_rank_func()
     windowObj.first_value_func()
+    windowObj.last_value_func()
