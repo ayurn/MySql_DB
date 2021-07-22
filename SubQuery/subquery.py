@@ -45,7 +45,23 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
             
+    def not_in_subquery():
+        """
+        Description:
+            function that returns customer detail who does not belong to Los Angeles City using NOT IN.
+        """
+        try:
+            cursor = database_con.cursor()
+            query ="select CustomerName , City from Customers where City NOT IN (select City FROM Customers where City = 'LosAngalis');"
+            cursor.execute(query)
+            result = cursor.fetchall()
+            Log.logging.debug(result)
+        except Exception as e:
+            Log.logging.error(e)
+            
+            
 if __name__ == '__main__':
     subqueryObj = Database
     subqueryObj.create_subquery()
     subqueryObj.comparison_operator_subquery()
+    subqueryObj.not_in_subquery()
