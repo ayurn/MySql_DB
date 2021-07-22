@@ -59,9 +59,25 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
             
+    def exist_subquery():
+        """
+        Description:
+            function to use EXISTS operator to find the name and occupation 
+            of the customer who has placed at least one order
+        """
+        try:
+            cursor = database_con.cursor()
+            query ="SELECT name, occupation FROM customer   WHERE EXISTS (SELECT * FROM orders WHERE customer.cust_id = orders.cust_id)"
+            cursor.execute(query)
+            result = cursor.fetchall()
+            Log.logging.debug(result)
+        except Exception as e:
+            Log.logging.error(e)
+            
             
 if __name__ == '__main__':
     subqueryObj = Database
     subqueryObj.create_subquery()
     subqueryObj.comparison_operator_subquery()
     subqueryObj.not_in_subquery()
+    subqueryObj.exist_subquery()
