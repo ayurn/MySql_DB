@@ -43,10 +43,10 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
             
-    def create_stored_procedure():
+    def create_in_stored_procedure():
         """
         Description:
-            function to create stored procedure.
+            function to create stored procedure with in parameter.
         """
         try:
             cursor = database_con.cursor()
@@ -56,7 +56,22 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
             
+    def call_in_procedure():
+        """
+        Description:
+            function will call the sorted procedure with in parameter.
+        """
+        try:
+            cursor = database_con.cursor()
+            cursor.callproc('emp_data',[6000,])
+            for result in cursor.stored_results():
+                Log.logging.info(result.fetchall())
+        except Exception as e:
+            Log.logging.error(e)
+            
 if __name__ == '__main__':
     storedObj = Database
     storedObj.create_stored_procedure()
     storedObj.call_procedure()
+    storedObj.create_in_stored_procedure()
+    storedObj.call_in_procedure()
