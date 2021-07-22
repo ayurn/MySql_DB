@@ -69,9 +69,24 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
             
+    def display_procedures():
+        """
+        Description:
+            function will display procedure from database.
+        """
+        try:
+            cursor = database_con.cursor()
+            display_query =("show procedure status where Db = 'sqlOperations'")
+            cursor.execute(display_query)
+            result = cursor.fetchall()
+            Log.logging.debug(result)
+        except Exception as e:
+            Log.logging.error(e)
+            
 if __name__ == '__main__':
     storedObj = Database
     storedObj.create_stored_procedure()
     storedObj.call_procedure()
     storedObj.create_in_stored_procedure()
     storedObj.call_in_procedure()
+    storedObj.display_procedures()
