@@ -44,9 +44,25 @@ class Database:
             Log.logging.debug(result)
         except Exception as e:
             Log.logging.error(e)
+            
+    def dense_rank_func():
+        """
+        Description:
+            function to use the DENSE_RANK() function to rank the sales employees by sale amount.
+        """
+        try:
+            cursor = database_con.cursor()
+            create_procedure_query ="SELECT sales_employee, fiscal_year, sale, DENSE_RANK() OVER (PARTITION BY fiscal_year ORDER BY sale DESC) sales_rank FROM sales;"
+            cursor.execute(create_procedure_query)
+            result = cursor.fetchall()
+            Log.logging.debug(result)
+        except Exception as e:
+            Log.logging.error(e)
+        
         
             
 if __name__ == '__main__':
     windowObj = Database
     windowObj.using_over()
     windowObj.cume_dist_func()
+    windowObj.dense_rank_func()
