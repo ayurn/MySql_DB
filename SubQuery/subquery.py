@@ -34,7 +34,7 @@ class Database:
     def comparison_operator_subquery():
         """
         Description:
-            function that returns the employee detail whose income is more than 6000 using subquery..
+            function that returns the employee detail whose income is more than 6000 using subquery.
         """
         try:
             cursor = database_con.cursor()
@@ -74,6 +74,21 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
             
+    def not_exist_subquery():
+        """
+        Description:
+            function to use NOT EXISTS operator to find the name and occupation 
+            of the customer who havent placed any order.
+        """
+        try:
+            cursor = database_con.cursor()
+            query ="SELECT name, occupation FROM customer WHERE NOT EXISTS (SELECT * FROM orders WHERE customer.cust_id = orders.cust_id)"
+            cursor.execute(query)
+            result = cursor.fetchall()
+            Log.logging.debug(result)
+        except Exception as e:
+            Log.logging.error(e)
+            
             
 if __name__ == '__main__':
     subqueryObj = Database
@@ -81,3 +96,4 @@ if __name__ == '__main__':
     subqueryObj.comparison_operator_subquery()
     subqueryObj.not_in_subquery()
     subqueryObj.exist_subquery()
+    subqueryObj.not_exist_subquery()
