@@ -43,6 +43,19 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
             
+    def create_stored_procedure():
+        """
+        Description:
+            function to create stored procedure.
+        """
+        try:
+            cursor = database_con.cursor()
+            create_procedure_query ="create procedure emp_data(in var1 int) begin select * from EMPLOYEE where INCOME > var1; end"
+            cursor.execute(create_procedure_query)
+            Log.logging.debug("Stored procedure is created with in parameter.")
+        except Exception as e:
+            Log.logging.error(e)
+            
 if __name__ == '__main__':
     storedObj = Database
     storedObj.create_stored_procedure()
