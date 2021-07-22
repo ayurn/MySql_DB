@@ -100,6 +100,20 @@ class Database:
             Log.logging.debug(result)
         except Exception as e:
             Log.logging.error(e)
+            
+    def rank_func():
+        """
+        Description:
+            Using RANK() to rank the sales employees by sales amount in every year
+        """
+        try:
+            cursor = database_con.cursor()
+            query ="SELECT sales_employee, fiscal_year, sale, RANK() OVER (PARTITION BY fiscal_year ORDER BY sale DESC) sales_rank FROM sales;"
+            cursor.execute(query)
+            result = cursor.fetchall()
+            Log.logging.debug(result)
+        except Exception as e:
+            Log.logging.error(e)
         
 if __name__ == '__main__':
     windowObj = Database
@@ -109,3 +123,4 @@ if __name__ == '__main__':
     windowObj.first_value_func()
     windowObj.last_value_func()
     windowObj.nth_value_func()
+    windowObj.rank_func()
