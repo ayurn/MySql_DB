@@ -36,13 +36,26 @@ class Database:
         except Exception as e:
             Log.logging.error(e)
             
+    def import_db(configuration,new_db,import_file):
+        try:
+            cursor = database_con.cursor()
+            cursor.execute("CREATE DATABASE IF NOT EXISTS {}".format(new_db))
+            Log.logging.debug("Database created successfully")
+            os.system('mysql -u{} -p{} {} < {}'.format(configuration.user,configuration.password,new_db,import_file))
+            Log.logging.debug('File imported sucessfully.')
+        except Exception as e:
+            Log.logging.error(e)
 def main():
     import_expObj = Database()
     database_name = 'sqlOperations'
     filename = 'expDB'
+    new_db = 'new_db'
+    import_file = '/home/ayur/MySql/expDB.sql'
+    
     
     try:
         import_expObj.export_db(database_name,filename)
+        import_expObj.import_db(new_db,import_file)
     except Exception as e:
             Log.logging.error(e)
 
